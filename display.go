@@ -20,18 +20,6 @@ func DisplayMaze(maze Maze) (display Display) {
 			display.SetPixel(Vector{float64(x), float64(y)}, color.Gray{Y: uint8(maze.Get(Vector{float64(x), float64(y)}) * 255)})
 		}
 	}
-	display.SetPixel(maze.start, color.RGBA{
-		R: 255,
-		G: 0,
-		B: 0,
-		A: 255,
-	})
-	display.SetPixel(maze.finish, color.RGBA{
-		R: 0,
-		G: 255,
-		B: 0,
-		A: 255,
-	})
 	return
 }
 
@@ -72,4 +60,10 @@ func (display *Display) Save(path string) {
 
 func (display *Display) SetPixel(position Vector, color color.Color) {
 	display.image.Set(int(position[0]), int(position[1]), color)
+}
+
+func (display *Display) Matrix(matrix Matrix, color color.Color) {
+	for _, vector := range matrix {
+		display.SetPixel(vector, color)
+	}
 }

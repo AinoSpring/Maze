@@ -40,7 +40,7 @@ func (maze *Maze) RandomBorderPosition() Vector {
 	var axis = rand.Intn(2)
 	randomPosition[axis] = math.Round(randomPosition[axis]) * (maze.size[axis] - 1)
 	randomPosition[1-axis] = randomPosition[1-axis] * (maze.size[axis] - 1)
-	return randomPosition
+	return randomPosition.Floor()
 }
 
 func (maze *Maze) InBounds(position Vector) bool {

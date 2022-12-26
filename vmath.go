@@ -138,6 +138,26 @@ func (vector Vector) Lerp(other Vector, t float64) (result Vector) {
 	return
 }
 
+func (vector Vector) Equals(other Vector) bool {
+	if vector.Size() != other.Size() {
+		return false
+	}
+	for idx, element := range vector {
+		if element != other[idx] {
+			return false
+		}
+	}
+	return true
+}
+
+func (vector Vector) Floor() (result Vector) {
+	result = NewVector(vector.Size())
+	for idx, element := range vector {
+		result[idx] = float64(int(element))
+	}
+	return
+}
+
 // MATRICES
 
 type Matrix []Vector
